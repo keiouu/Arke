@@ -14,7 +14,9 @@
 #
 # Imports
 #
-import os, platform, arke_config, arke_lib
+import os, platform
+import arke_config as config
+from arke_lib import *
 
 #
 # Main Program
