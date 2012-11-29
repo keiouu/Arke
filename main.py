@@ -46,4 +46,4 @@ if config.auto_update:
 	os.system("apt-get upgrade --trivial-only")
 else:
 	# Just send a notification
-	sysmail("Packages require upgrading!")
+	sysmail("Packages require upgrading on %s!" % hostname, subject="Package Upgrades")

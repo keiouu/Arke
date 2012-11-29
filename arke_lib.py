@@ -2,12 +2,15 @@ import arke_config as config
 import smtplib, string, os
 from socket import gethostname
 
-def sysmail(message):
+def hostname():
+	return gethostname()
+
+def sysmail(message, subject="Notification Received!"):
 	my_addr = "Arke@%s" % gethostname()
 	body = string.join((
 		"From: %s" % my_addr,
 		"To: %s" % config.email,
-		"Subject: [Arke] Notification Received!",
+		"Subject: [Arke] %s" % subject,
 		"",
 		message
 	), "\r\n")
