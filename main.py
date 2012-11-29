@@ -14,7 +14,7 @@
 #
 # Imports
 #
-import os, platform
+import os, platform, apt
 import arke_config as config
 from arke_lib import *
 from arke_lib import __hostname__
@@ -39,14 +39,27 @@ print " "
 print "Running maintenance tasks..."
 
 # First we update apt
-os.system("apt-get update")
+cache=apt.Cache()
+cache.update()
+cache.open(None)
+cache.commit()
+cache.upgrade()
+pkgs = cache.get_changes()
+
+packageVers = " -> %s" % '\n -> '.join([x.name for x in pkgs])
+packageStr = "%d packages need upgrading!" % len(pkgs)
+print "%s\n%s" % (packageStr, packageVers)
 
 # What should we do with updates?
 if config.auto_update:
-	# Lets update!
+	# Print Info
+	print 'Upgrading System...'
+
+	# Lets update! Use os for this one..
 	os.system("apt-get upgrade --trivial-only")
+
 	# Send mail to notify
-	sysmail("Packages were upgraded on %s!" % __hostname__)
+	sysmail("The following packages were upgraded on %s!\n%s" % (__hostname__, packageVers))
 else:
 	# Just send a notification
-	sysmail("Packages require upgrading on %s!" % __hostname__, subject="Package Upgrades")
+	sysmail("The following packages require upgrading on %s!\n%s" % (__hostname__, packageVers), subject="Package Upgrades")
