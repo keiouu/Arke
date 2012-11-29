@@ -17,6 +17,7 @@
 import os, platform
 import arke_config as config
 from arke_lib import *
+from arke_lib import __hostname__
 
 #
 # Main Program
@@ -46,4 +47,4 @@ if config.auto_update:
 	os.system("apt-get upgrade --trivial-only")
 else:
 	# Just send a notification
-	sysmail("Packages require upgrading on %s!" % hostname, subject="Package Upgrades")
+	sysmail("Packages require upgrading on %s!" % __hostname__, subject="Package Upgrades")
