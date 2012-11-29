@@ -14,7 +14,7 @@
 #
 # Imports
 #
-import os, platform, arke_config
+import os, platform, arke_config, arke_lib
 
 #
 # Main Program
@@ -37,3 +37,11 @@ print "Running maintenance tasks..."
 
 # First we update apt
 os.system("apt-get update")
+
+# What should we do with updates?
+if config.auto_update:
+	# Lets update!
+	os.system("apt-get upgrade --trivial-only")
+else:
+	# Just send a notification
+	sysmail("Packages require upgrading!")
