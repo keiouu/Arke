@@ -5,11 +5,11 @@ Arke is a server management and monitoring tool.
 
 It currently performs the following functions:
 	-> Updates apt (apt-get update)
-	-> (Optionally) Upgrades trivial packages
 	-> Sends a notification about required upgrades to a sysadmin
+	-> (Optional) Upgrades trivial packages
+	-> (Optional) Self Auto-Updating
 
 Planned Features:
-	-> Run ntp update (for openvz admins who cant use ntpd)
+	-> (Optional) Run ntp update (for openvz admins who cant use ntpd)
 	-> (Optional) Package Synchronization
-	-> (Optional) self Auto-Updating
-	-> Service Monitoring
+	-> (Optional) Service Monitoring
