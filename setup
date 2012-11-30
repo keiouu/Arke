@@ -1,3 +1,15 @@
 #!/usr/bin/bash
 
+# Install dependencies
 apt-get install python-apt git
+
+# Pull in
+git clone git://github.com/keiouu/Arke.git .
+
+# Ensure arke.py has exec permissions
+chmod 0700 arke.py
+
+# Add cron
+PWD=$(pwd)
+CRON="* * * 0 0 ${PWD}/arke.py"
+cat < (crontab -l) |grep -v "${CRON}" < (echo "${CRON}")
