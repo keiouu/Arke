@@ -62,8 +62,8 @@ if config.auto_update:
 	# Print Info
 	print 'Upgrading System...'
 
-	# Lets update! Use os for this one..
-	os.system("apt-get upgrade --trivial-only")
+	# Lets update!
+	cache.commit()
 
 	# Send mail to notify
 	sysmail("The following packages were upgraded on %s!\n%s" % (__hostname__, packageVers))

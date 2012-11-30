@@ -17,6 +17,7 @@ chmod 0700 arke.py
 # Setup config
 cp /opt/arke/arke_config_example.py /opt/arke/arke_config.py
 vi /opt/arke/arke_config.py
+rm /opt/arke/arke_config_example.py
 
 # Add cron
 echo "Arke setup complete!"
