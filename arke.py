@@ -14,7 +14,7 @@
 #
 # Imports
 #
-import os, platform, apt
+import os, sys, platform, apt
 import arke_config as config
 from arke_lib import *
 from arke_lib import __hostname__
@@ -29,11 +29,14 @@ __supported_dists__ = ["Debian", "Ubuntu", "debian", "ubuntu"]
 print "Welcome to Arke %s!" % __version__
 print " "
 
-# Discover what system we are on, and ensure we are root
+# Discover what system we are on
 dist, vers, name = platform.linux_distribution()
 if dist not in __supported_dists__:
-	print "Sorry, %s is not supported!" % dist
-	exit(0)
+	sys.exit("\nSorry, %s is not supported!\n" % dist)
+
+# Ensure we are root
+if not os.geteuid() == 0:
+	sys.exit("\nThis script must be run as root!\n")
 
 print " "
 print "Running maintenance tasks..."
