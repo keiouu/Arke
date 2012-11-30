@@ -41,6 +41,10 @@ if not os.geteuid() == 0:
 print " "
 print "Running maintenance tasks..."
 
+#################
+# Update System #
+#################
+
 # First we update apt
 cache = apt.Cache()
 cache.update()
@@ -53,9 +57,7 @@ packageVers = " -> %s" % '\n -> '.join([x.name for x in pkgs])
 packageStr = "%d packages need upgrading!" % len(pkgs)
 print "%s\n%s" % (packageStr, packageVers)
 
-# 
 # What should we do with updates?
-# 
 if config.auto_update:
 	# Print Info
 	print 'Upgrading System...'
@@ -69,8 +71,9 @@ else:
 	# Just send a notification
 	sysmail("The following packages require upgrading on %s!\n%s" % (__hostname__, packageVers), subject="Package Upgrades")
 
-# 
-# Auto update self
-# 
+####################
+# Auto update self #
+####################
+
 if config.self_update:
 	os.system("git pull")
