@@ -76,4 +76,7 @@ else:
 ####################
 
 if config.self_update:
+	cwd = os.getcwd()
+	os.chdir("/opt/arke/")
 	os.system("git pull")
+	os.chdir(cwd)

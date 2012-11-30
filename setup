@@ -14,7 +14,11 @@ git clone git://github.com/keiouu/Arke.git .
 # Ensure arke.py has exec permissions
 chmod 0700 arke.py
 
+# Setup config
+cp /opt/arke/arke_config_example.py /opt/arke/arke_config.py
+vi /opt/arke/arke_config.py
+
 # Add cron
-echo "Arke setup complete"
+echo "Arke setup complete!"
 echo "Add the following line to root crontab:"
 echo "0 0 * * * /opt/arke/arke.py"
