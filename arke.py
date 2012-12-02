@@ -14,6 +14,7 @@
 #
 # Imports
 #
+
 import os, sys, platform, apt
 import arke_config as config
 from arke_lib import *
@@ -57,19 +58,20 @@ packageVers = " -> %s" % '\n -> '.join([x.name for x in pkgs])
 packageStr = "%d packages need upgrading!" % len(pkgs)
 print "%s\n%s" % (packageStr, packageVers)
 
-# What should we do with updates?
-if config.auto_update:
-	# Print Info
-	print 'Upgrading System...'
+if len(pkgs) > 0:
+	# What should we do with updates?
+	if config.auto_update:
+		# Print Info
+		print 'Upgrading System...'
 
-	# Lets update!
-	cache.commit()
+		# Lets update!
+		cache.commit()
 
-	# Send mail to notify
-	sysmail("The following packages were upgraded on %s!\n%s" % (__hostname__, packageVers))
-else:
-	# Just send a notification
-	sysmail("The following packages require upgrading on %s!\n%s" % (__hostname__, packageVers), subject="Package Upgrades")
+		# Send mail to notify
+		sysmail("The following packages were upgraded on %s!\n%s" % (__hostname__, packageVers))
+	else:
+		# Just send a notification
+		sysmail("The following packages require upgrading on %s!\n%s" % (__hostname__, packageVers), subject="Package Upgrades")
 
 ####################
 # Auto update self #
