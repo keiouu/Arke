@@ -6,8 +6,15 @@
 # tasks and alert a sys admin to anything that requires   #
 # special attention.                                      #
 #                                                         #
-# Version: 0.1                                            #
+# Version: 0.2                                            #
 # Author: James Thompson                                  #
+#                                                         #
+###########################################################
+#                                                         #
+# Changelist for v0.2                                     #
+#   -> Arke now runs as a Daemon                          #
+#   -> Sends notifications to central server              #
+#   -> Can accept actions from central server             #
 #                                                         #
 ###########################################################
 
@@ -24,7 +31,7 @@ from arke_lib import __hostname__
 # Main Program
 #
 
-__version__ = "0.1"
+__version__ = "0.2"
 __supported_dists__ = ["Debian", "Ubuntu", "debian", "ubuntu"]
 
 print "Welcome to Arke %s!" % __version__
