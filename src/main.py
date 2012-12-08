@@ -7,10 +7,8 @@
 # Imports
 #
 
-import os, sys, platform, time, apt
+import os, time, apt
 from src import *
-from util import *
-from util import __hostname__
 
 
 #
@@ -19,27 +17,16 @@ from util import __hostname__
 
 class Arke(daemon.Daemon):
 	def run(self):
+		print " "
+		print "Welcome to Arke v0.2!"
+		print " "
+
 		while True:
 			self.perform()
-			time.sleep(config.interval) # Run every minute
+			time.sleep(config.interval)
 
-	def perform(self):__version__ = "0.2"
-		__supported_dists__ = ["Debian", "Ubuntu", "debian", "ubuntu"]
-
-		print "Welcome to Arke %s!" % __version__
-		print " "
-
-		# Discover what system we are on
-		dist, vers, name = platform.linux_distribution()
-		if dist not in __supported_dists__:
-			sys.exit("\nSorry, %s is not supported!\n" % dist)
-
-		# Ensure we are root
-		if not os.geteuid() == 0:
-			sys.exit("\nThis script must be run as root!\n")
-
-		print " "
-		print "Running maintenance tasks..."
+	def perform(self):
+		print "Running tasks..."
 
 		#################
 		# Update System #
@@ -67,10 +54,10 @@ class Arke(daemon.Daemon):
 				cache.commit()
 
 				# Send mail to notify
-				sysmail("The following packages were upgraded on %s!\n%s" % (__hostname__, packageVers))
+				util.sysmail("The following packages were upgraded on %s!\n%s" % (util.hostname(), packageVers))
 			else:
 				# Just send a notification
-				sysmail("The following packages require upgrading on %s!\n%s" % (__hostname__, packageVers), subject="Package Upgrades")
+				util.sysmail("The following packages require upgrading on %s!\n%s" % (util.hostname(), packageVers), subject="Package Upgrades")
 
 		####################
 		# Auto update self #

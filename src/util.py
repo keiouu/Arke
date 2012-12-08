@@ -2,7 +2,8 @@ import arke_config as config
 import smtplib, string, os
 from socket import gethostname
 
-__hostname__ = gethostname()
+def hostname():
+	return gethostname()
 
 def sysmail(message, subject="Notification Received!"):
 	my_addr = "Arke@%s" % __hostname__

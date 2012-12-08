@@ -22,10 +22,25 @@
 # Imports
 #
 
+import sys, platform
 from src import main
 
 #
 # Main Program
+#
+__supported_dists__ = ["Debian", "Ubuntu", "debian", "ubuntu"]
+
+# Discover what system we are on
+dist, vers, name = platform.linux_distribution()
+if dist not in __supported_dists__:
+	sys.exit("\nSorry, %s is not supported!\n" % dist)
+
+# Ensure we are root
+if not os.geteuid() == 0:
+	sys.exit("\nThis script must be run as root!\n")
+
+#
+# Now the admin is out of the way.. lets see what OP wants!
 #
 
 if __name__ == "__main__":
