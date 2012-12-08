@@ -17,9 +17,7 @@ from src import *
 
 class Arke(daemon.Daemon):
 	def run(self):
-		print " "
-		print "Welcome to Arke v0.2!"
-		print " "
+		print "\nWelcome to Arke v0.2!\n"
 
 		while True:
 			self.perform()
