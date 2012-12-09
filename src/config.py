@@ -7,6 +7,8 @@ defaults = {
 	"interval": 14400,
 	"auto_update": False,
 	"self_update": True,
+	"mongo_host": "127.0.0.1",
+	"mongo_port": "27017",
 	"email": "you@you.com",
 	"smtp_host": "localhost",
 }

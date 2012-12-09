@@ -44,7 +44,7 @@ if not os.geteuid() == 0:
 #
 
 if __name__ == "__main__":
-        daemon = main.Arke('/tmp/arke.pid')
+        daemon = main.Arke('/tmp/arke.pid', stdout='/var/log/arke.out', stderr='/var/log/arke.err')
         if len(sys.argv) == 2:
                 if 'start' == sys.argv[1]:
                         daemon.start()
