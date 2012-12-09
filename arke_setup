@@ -11,9 +11,6 @@ cd /opt/arke
 # Pull in
 git clone git://github.com/keiouu/Arke.git .
 
-# Ensure arke.py has exec permissions
-chmod 0700 arke.py
-
 # Setup config
 cp /opt/arke/arke_config_example.py /opt/arke/arke_config.py
 vi /opt/arke/arke_config.py

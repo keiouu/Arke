@@ -23,6 +23,7 @@ class Arke(daemon.Daemon):
 			self.perform()
 			time.sleep(config.interval)
 
+	# Perform's job is to update and create tasks
 	def perform(self):
 		print "Running tasks..."
 
