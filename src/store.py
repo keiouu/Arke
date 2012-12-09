@@ -29,7 +29,7 @@ class Model(object):
 # description
 # priority (1-10) 1 is the most important
 # type = ["Generic", "Package"]
-# status = ["Proposed", "Accepted", "Rejected", "Completed"]
+# status = ["Info", "Proposed", "Accepted", "Rejected", "Completed", "Fault"]
 class Task(Model):
 
 	def create(self, name, description="No Description", priority=5, task_type="Package", status="Proposed"):

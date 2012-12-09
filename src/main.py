@@ -51,12 +51,18 @@ class Arke(daemon.Daemon):
 
 				# Lets update!
 				cache.commit()
-
-				# Send mail to notify
-				util.sysmail("The following packages were upgraded on %s!\n%s" % (util.hostname(), packageVers))
+				new_pkgs = cache.get_changes()
+				if len(new_pkgs) > 0:
+					# Something went wrong, send a notification
+					succeeded = " -> %s" % '\n -> '.join([x.name for x in pkgs if x not in new_pkgs])
+					failed = " -> %s" % '\n -> '.join([x.name for x in new_pkgs])
+					store.Task.create("Updates Failed", "Succeeded:\n%s\nFailed:\n%s" % (succeeded, failed), 2, "Package", "Fault")
+				else:
+					# Send notification
+					store.Task.create("Software Updated", "Succeeded:\n%s" % packageVers, 10, "Package", "Info")
 			else:
 				# Just send a notification
-				util.sysmail("The following packages require upgrading on %s!\n%s" % (util.hostname(), packageVers), subject="Package Upgrades")
+				store.Task.create("Updates Available", "Available:\n%s" % packageVers, 3, "Package", "Proposed")
 
 		####################
 		# Auto update self #
