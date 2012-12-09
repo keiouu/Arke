@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Install dependencies
-apt-get install -y python-apt git
+apt-get install -y python-apt git python-pip python-dev build-essential
+pip install pymongo
 
 # Create DIR
 rm -rf /opt/arke
