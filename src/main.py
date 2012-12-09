@@ -36,7 +36,7 @@ class Arke(daemon.Daemon):
 		cache.update()
 		cache.open(None)
 		cache.commit()
-		cache.upgrade()
+		cache.upgrade(True)
 		pkgs = cache.get_changes()
 
 		packageVers = " -> %s" % '\n -> '.join([x.name for x in pkgs])

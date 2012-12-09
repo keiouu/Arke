@@ -29,13 +29,15 @@ class Model(object):
 # description
 # priority (1-10) 1 is the most important
 # type = ["Generic", "Package"]
+# status = ["Proposed", "Accepted", "Rejected", "Completed"]
 class Task(Model):
 
-	def create(self, name, description="No Description", priority=5, task_type="Package"):
+	def create(self, name, description="No Description", priority=5, task_type="Package", status="Proposed"):
 		Model.create(self, {
 			"name": name,
 			"description": description,
 			"priority": priority,
 			"type": task_type,
+			"status": status,
 			"date": datetime.datetime.utcnow()
 		})
